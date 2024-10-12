@@ -64,7 +64,7 @@ class script(object):
     EXSERI_TXT = """Help: <b>Extra Modules</b>
 
 <b>NOTE:</b>
-these are the extra features of Mr.Bean
+these are the extra features of 𝐀𝐢𝐬𝐡𝐰𝐚𝐫𝐲𝐚 𝐋𝐞𝐤𝐬𝐡𝐦𝐢
 
 <b>Commands and Usage:</b>
 • /id - <code>get id of a specified user.</code>
@@ -132,7 +132,7 @@ Command and uses
     EXTRAMOD_TXT = """Help: <b>Extra Modules</b>
 
 <b>NOTE:</b>
-these are the extra features of Eva Maria
+these are the extra features of 𝐀𝐢𝐬𝐡𝐰𝐚𝐫𝐲𝐚 𝐋𝐞𝐤𝐬𝐡𝐦𝐢
 
 <b>Commands and Usage:</b>
 • /id - <code>get id of a specified user.</code>
