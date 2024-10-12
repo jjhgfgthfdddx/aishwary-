@@ -76,10 +76,10 @@ async def send_file(client, query, ident, file_id):
     if f_caption is None:
         f_cation = f"{title}"
     inline_keyboard = [[
-            InlineKeyboardButton('മൂവീസ് ഗ്രൂപ്പ് ', url='https://t.me/+A0B5zHQ2_wkxZjdl')
-            ],[
-            InlineKeyboardButton('പുതിയ സിനിമകൾ', url='https://t.me/+_PdIBkSu7bAwOTVl')
-            ]]
+            InlineKeyboardButton('🖥 𝗡𝗘𝗪 𝗢𝗧𝗧 𝗨𝗣𝗗𝗔𝗧𝗘𝗦 🖥', url=f'https://t.me/+mKFmz9pYLkc5Njhl')
+            ],[     
+            InlineKeyboardButton("🖥 𝐎𝐓𝐓 𝐈𝐍𝐒𝐓𝐆𝐑𝐀𝐌 🖥", url='https://www.instagram.com/new_ott__updates?igsh=MTMxcmhwamF4eGp6eg==')
+    ]]
     reply_markup = InlineKeyboardMarkup(inline_keyboard)
     ok = await client.send_cached_media(
         chat_id=query.from_user.id,
@@ -103,13 +103,12 @@ async def send_file(client, query, ident, file_id):
 async def start(client, message):
     if message.chat.type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
         buttons = [
-            [
-                InlineKeyboardButton('🤖 Updates', url='https://t.me/TeamEvamaria')
-            ],
-            [
-                InlineKeyboardButton('ℹ️ Help', url=f"https://t.me/{temp.U_NAME}?start=help"),
-            ]
-            ]
+               InlineKeyboardButton('➕ ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘs ➕', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
+               ],[
+                InlineKeyboardButton('🖥 𝗡𝗘𝗪 𝗢𝗧𝗧 𝗨𝗣𝗗𝗔𝗧𝗘𝗦 🖥', url=f'https://t.me/+mKFmz9pYLkc5Njhl')
+              ],[
+                InlineKeyboardButton('⭕️ 𝐌𝐎𝐕𝐈𝐄 𝐆𝐑𝐎𝐔𝐏 𝐋𝐈𝐍𝐊 ⭕️', url="https://t.me/+UOqKD-B3qutmMmU1"),
+        ]       
         reply_markup = InlineKeyboardMarkup(buttons)
         await message.reply(script.START_TXT.format(message.from_user.mention if message.from_user else message.chat.title, temp.U_NAME, temp.B_NAME), reply_markup=reply_markup)
         await asyncio.sleep(2) # 😢 https://github.com/EvamariaTG/EvaMaria/blob/master/plugins/p_ttishow.py#L17 😬 wait a bit, before checking.
@@ -133,14 +132,10 @@ async def start(client, message):
         ],[
             InlineKeyboardButton('ᴀᴅᴍɪɴs ᴇxᴛʀᴀ ғᴇᴀᴛᴜʀᴇs', callback_data='machu')
         ]]
-        reply_markup = InlineKeyboardMarkup(buttons)
-        
-        sticker_link = ['CAACAgUAAxkBAAJ1JWblk-US6Uoj9pRCCUPmsO4ZGrhxAAJiDgACLnkIVRYwN-sph-KJNgQ',
-        'CAACAgUAAxkBAAJ1KGbllXrrULM9g43W4WZWzfUORLfwAAJlDQACyQQJVU45CAwlz3BxNgQ']
-        
-
-        m = await message.reply_sticker(random.choice(sticker_link))         
-        await message.reply_text(script.START_TXT.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),
+        reply_markup = InlineKeyboardMarkup(buttons)      
+        await message.reply_photo(
+            photo=random.choice(PICS),
+            caption=script.START_TXT.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
         )
@@ -148,7 +143,7 @@ async def start(client, message):
     if REQ_CHANNEL1 and not await is_requested_one(client, message):
         btn = [[
             InlineKeyboardButton(
-                "Update Channel 1", url=client.req_link1)
+                "➳ 𝐽𝑂𝐼𝑁 𝑈𝑃𝐷𝐴𝑇𝐸 𝐶𝐻𝑁𝑁𝑁𝐸𝐿 ✺", url=client.req_link1)
         ]]
         should_run_check_loop_sub1 = True
         should_run_check_loop_sub = False
@@ -157,7 +152,7 @@ async def start(client, message):
                 btn.append(
                       [
                     InlineKeyboardButton(
-                        "Update Channel 2", url=client.req_link2)
+                        "➳ 𝐽𝑂𝐼𝑁 𝑈𝑃𝐷𝐴𝑇𝐸 𝐶𝐻𝑁𝑁𝑁𝐸𝐿 𝟮 ✺", url=client.req_link2)
                       ]
                 )
                 should_run_check_loop_sub = True                      
@@ -172,7 +167,7 @@ async def start(client, message):
                 btn.append([InlineKeyboardButton("Try Again", url=f"https://t.me/{temp.U_NAME}?start={message.command[1]}")])
         sh = await client.send_message(
             chat_id=message.from_user.id,
-            text="**താഴെ കാണുന്ന Update ചാനലുകളിൽ ജോയിൻ ആയാൽ സിനിമ കിട്ടുന്നതാണ്✅\n\nIf you join the update channels below, you will get the movie✅\n\n||🎙 നിങ്ങൾ ചാനലിൽ ജോയിൻ ആയാൽ മാത്രം മതി സിനിമ Automatic ആയി നിങ്ങളിൽ വരുന്നതാണ്||**",
+            text="**⚠️ ശ്രദ്ധിക്കുക ⚠️\n\n{message.from_user.mention} 🙋‍♂️ ഫയൽ ലഭിക്കാൻ ഒരൊറ്റ ഒരു കാര്യം ചെയ്താൽ മതി താഴെ കാണുന്ന «➳ 𝐽𝑂𝐼𝑁 𝑈𝑃𝐷𝐴𝑇𝐸 𝐶𝐻𝑁𝑁𝑁𝐸𝐿 ✺» ബട്ടൻ ക്ലിക്ക് ചെയ്തിട്ട് «Request to join chnnnel» ക്ലിക്ക് ചെയ്താൽ അപ്പോൾ തന്നെ ഫയൽ ലഭിക്കും..!\n\n⚠️ 𝐵𝑒 𝐶𝑎𝑟𝑒𝑓𝑢𝑙 ⚠️\n\n𝑇𝑜 𝑔𝑒𝑡 𝑡ℎ𝑒 {message.from_user.mention} 🙋‍♂️ 𝑓𝑖𝑙𝑒, 𝑦𝑜𝑢 𝑗𝑢𝑠𝑡 ℎ𝑎𝑣𝑒 𝑡𝑜 𝑑𝑜 𝑜𝑛𝑒 𝑡ℎ𝑖𝑛𝑔, 𝑐𝑙𝑖𝑐𝑘 𝑜𝑛 𝑡ℎ𝑒 𝑏𝑒𝑙𝑜𝑤 «➳ 𝐽𝑂𝐼𝑁 𝑈𝑃𝐷𝐴𝑇𝐸 𝐶𝐻𝑁𝑁𝑁𝐸𝐿 ✺» 𝑏𝑢𝑡𝑡𝑜𝑛 𝑎𝑛𝑑 𝑡ℎ𝑒𝑛 𝑐𝑙𝑖𝑐𝑘 𝑜𝑛 «𝑅𝑒𝑞𝑢𝑒𝑠𝑡 𝑡𝑜 𝑗𝑜𝑖𝑛 𝑐ℎ𝑎𝑛𝑛𝑒𝑙» 𝑎𝑛𝑑 𝑡ℎ𝑒𝑛 𝑦𝑜𝑢 𝑤𝑖𝑙𝑙 𝑔𝑒𝑡 𝑡ℎ𝑒 𝑓𝑖𝑙𝑒..!!**",
             reply_markup=InlineKeyboardMarkup(btn),
             parse_mode=enums.ParseMode.MARKDOWN
             )
@@ -201,7 +196,7 @@ async def start(client, message):
                 btn.append([InlineKeyboardButton("Try Again", url=f"https://t.me/{temp.U_NAME}?start={message.command[1]}")])
         sh = await client.send_message(
             chat_id=message.from_user.id,
-            text="**നിങ്ങൾ താഴെയുള്ള Update Channel 2 എന്നതിൽ ജോയിൻ ആവുക ശേഷം നിങ്ങൾക്ക് സിനിമ കിട്ടുന്നതാണ് ✅\n\nJoin the Update Channel 2 And you will get the movie✅**",
+            text="**⚠️ ശ്രദ്ധിക്കുക ⚠️\n\n{message.from_user.mention} 🙋‍♂️ ഫയൽ ലഭിക്കാൻ ഒരൊറ്റ ഒരു കാര്യം ചെയ്താൽ മതി താഴെ കാണുന്ന «➳ 𝐽𝑂𝐼𝑁 𝑈𝑃𝐷𝐴𝑇𝐸 𝐶𝐻𝑁𝑁𝑁𝐸𝐿 ✺» ബട്ടൻ ക്ലിക്ക് ചെയ്തിട്ട് «Request to join chnnnel» ക്ലിക്ക് ചെയ്താൽ അപ്പോൾ തന്നെ ഫയൽ ലഭിക്കും..!\n\n⚠️ 𝐵𝑒 𝐶𝑎𝑟𝑒𝑓𝑢𝑙 ⚠️\n\n𝑇𝑜 𝑔𝑒𝑡 𝑡ℎ𝑒 {message.from_user.mention} 🙋‍♂️ 𝑓𝑖𝑙𝑒, 𝑦𝑜𝑢 𝑗𝑢𝑠𝑡 ℎ𝑎𝑣𝑒 𝑡𝑜 𝑑𝑜 𝑜𝑛𝑒 𝑡ℎ𝑖𝑛𝑔, 𝑐𝑙𝑖𝑐𝑘 𝑜𝑛 𝑡ℎ𝑒 𝑏𝑒𝑙𝑜𝑤 «➳ 𝐽𝑂𝐼𝑁 𝑈𝑃𝐷𝐴𝑇𝐸 𝐶𝐻𝑁𝑁𝑁𝐸𝐿 ✺» 𝑏𝑢𝑡𝑡𝑜𝑛 𝑎𝑛𝑑 𝑡ℎ𝑒𝑛 𝑐𝑙𝑖𝑐𝑘 𝑜𝑛 «𝑅𝑒𝑞𝑢𝑒𝑠𝑡 𝑡𝑜 𝑗𝑜𝑖𝑛 𝑐ℎ𝑎𝑛𝑛𝑒𝑙» 𝑎𝑛𝑑 𝑡ℎ𝑒𝑛 𝑦𝑜𝑢 𝑤𝑖𝑙𝑙 𝑔𝑒𝑡 𝑡ℎ𝑒 𝑓𝑖𝑙𝑒..!!**",
             reply_markup=InlineKeyboardMarkup(btn),
             parse_mode=enums.ParseMode.MARKDOWN
         )
@@ -376,15 +371,20 @@ async def start(client, message):
         file_id=file_id,
         caption=f_caption,
         protect_content=True if pre == 'filep' else False,
-        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('പുതിയ സിനിമകൾ', url='https://t.me/+_PdIBkSu7bAwOTVl')
-            ],[
-            InlineKeyboardButton('മൂവീസ് ഗ്രൂപ്പ് ', url='https://t.me/+A0B5zHQ2_wkxZjdl')
-            ]])
-    )
+        reply_markup=InlineKeyboardMarkup(
+                          [
+                            [                            
+                            InlineKeyboardButton('🖥 𝗡𝗘𝗪 𝗢𝗧𝗧 𝗨𝗣𝗗𝗔𝗧𝗘𝗦 🖥', url=f'https://t.me/+XzVIX3lhqzAyYTQ1')
+                          ],[     
+                            InlineKeyboardButton("🖥 𝐎𝐓𝐓 𝐈𝐍𝐒𝐓𝐆𝐑𝐀𝐌 🖥", url='https://www.instagram.com/new_ott__updates?igsh=MTMxcmhwamF4eGp6eg==')
+                           ]
+                        ]
+                    )
+    )    
     if title and any(keyword in title.lower() for keyword in ['predvd', 'predvdrip']):
         f_caption += "\n⚠️<b><i>ഈ മൂവിയുടെ ഫയൽ എവിടെയെങ്കിലും ഫോർവേഡ് ചെയ്തു വെക്കുക എന്നിട്ട് ഡൗൺലോഡ് ചെയ്യുക\n\n3 മിനിറ്റിൽ ഇവിടുന്ന് ഡിലീറ്റ് ആവും🗑\n\n⚠️Forward the file of this Movie somewhere and download it\n\nWill be deleted from here in 3 minutes🗑</i></b>"
         inline_keyboard = [
-                [InlineKeyboardButton("🔸ALL MOVIES CLICK HERE🔸", url="https://t.me/new_movies_group_2021")]
+                [InlineKeyboardButton("🔸ALL MOVIES CLICK HERE🔸", url="https://t.me/+8YhpTpHZUrQ3YTNl")]
             ]
         reply_markup = InlineKeyboardMarkup(inline_keyboard)
         await xd.edit_caption(caption=f_caption, reply_markup=reply_markup)
