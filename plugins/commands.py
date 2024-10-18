@@ -430,7 +430,54 @@ async def log_file(bot, message):
         await message.reply_document('TelegramBot.log')
     except Exception as e:
         await message.reply(str(e))
-
+   
+@Client.on_message(filters.command("latest") & filters.incoming)
+async def latest(client, message):   
+    
+    text_data = infile.find_one({"_id": "file_text"})
+    if not text_data:
+        return
+    text = text_data.get(f"text")
+    if text == "off":          
+        return
+    else:
+        await message.reply_text(f"{text}")
+        
+@Client.on_message(filters.command('file_text') & filters.user(ADMINS))
+async def set_file_text_command(client, message):
+    await message.react("😍")
+    text_data = infile.find_one({"_id": "file_text"})    
+    if len(message.command) == 1:        
+        if not text_data:
+            await message.reply("You don't have any text")
+            return
+        text = text_data.get("text")
+        if text == "off":
+            await message.reply("You don't have any text")
+            return
+        else:
+            await message.reply(f"current text is\n\n {text}")
+            return 
+    else:
+        text = message.text.split(" ", 1)[1]
+        if text == "off":
+            if not text_data:                    
+                await message.reply(f"Text have Deleted.")
+            else:
+                infile.update_one(
+                    {"_id": "file_text"},
+                    {"$set": {"text": "off"}},
+                    upsert=True
+                )
+                await message.reply("Text have Deleted.")
+        else:
+            infile.update_one(
+                    {"_id": "file_text"},
+                    {"$set": {"text": text}},
+                    upsert=True
+            )
+            await message.reply("Saved buddy 😁.")
+            
 @Client.on_message(filters.command('delete') & filters.user(ADMINS))
 async def delete(bot, message):
     """Delete file from database"""
