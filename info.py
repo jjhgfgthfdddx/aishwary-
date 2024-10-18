@@ -15,7 +15,7 @@ def is_enabled(value, default):
 SESSION = environ.get('SESSION', 'autodelete')
 API_ID = int(environ.get("API_ID", "18674011"))
 API_HASH = environ.get("API_HASH", "38d3664512757d8830601169eff5a1de")
-BOT_TOKEN = environ.get("BOT_TOKEN", "7129284446:AAFHfchy6e_Eu_28fAfVCIxtJXq2XPNpXq8")
+PICS = (environ.get('PICS', 'https://telegra.ph/file/bb8d3fef33012c904cd8c.jpg https://telegra.ph/file/5c81135d7a6812cf6c082.jpg https://telegra.ph/file/7007fbdfbf8f14b507254.jpg https://telegra.ph/file/49648a6f053f44f0dc7be.jpg https://telegra.ph/file/18892e681aadc9c76cd43.jpg https://telegra.ph/file/a44f2fe85c5e5f0bc2e1f.jpg https://telegra.ph/file/1027292d6a34cc8b3c821.jpg https://telegra.ph/file/8f6c5ca006034e4a19b27.jpg')).split()
 
 # Bot settings
 CACHE_TIME = int(environ.get('CACHE_TIME', 300))
