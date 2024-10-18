@@ -439,7 +439,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 ]
             reply_markup = InlineKeyboardMarkup(inline_keyboard)
             await xd.edit_caption(caption=f_caption, reply_markup=reply_markup)
-            await asyncio.sleep(180)                   
+            await asyncio.sleep(300)                   
             await xd.delete()
 
     elif query.data.startswith("killfilesdq"):
@@ -1008,7 +1008,7 @@ async def auto_filter(client, msg, spoll=False):
             composer=imdb["composer"],
             cinematographer=imdb["cinematographer"],
             music_team=imdb["music_team"],
-            distributors=imdb["distributors"],
+      distributors=imdb["distributors"],
             release_date=imdb['release_date'],
             year=imdb['year'],
             genres=imdb['genres'],
@@ -1019,7 +1019,7 @@ async def auto_filter(client, msg, spoll=False):
             **locals()
         )
     else:
-        cap = f"<b>𝖥𝗂𝗅𝗆 : {search} \n𝖱𝖾𝗌𝗎𝗅𝗍𝗌 : {total_results}\n𝖴𝗌𝖾𝗋 : {message.from_user.mention}\n\n[Usᴇ Bᴇʟᴏᴡ Nᴇxᴛ Bᴜᴛᴛᴏɴ]</b>"
+        cap = f"<b>𝖥𝗂𝗅𝗆 : {search} \n𝖱𝖾𝗌𝗎𝗅𝗍𝗌 : {total_results}\n𝖴𝗌𝖾𝗋 : {message.from_user.mention}\n\n[ᴏɴʟʏ ꜰᴏʀ ᴘʀᴇ ᴅᴠᴅ ( ᴛʜᴇᴀᴛʀᴇ ᴘʀɪɴᴛ) ꜰɪʟᴇꜱ]</b>"
     if imdb and imdb.get('poster'):
         try:
             ok = await message.reply_photo(photo=imdb.get('poster'), caption=cap[:1024],
