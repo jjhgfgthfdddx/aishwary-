@@ -382,25 +382,15 @@ async def start(client, message):
                     )
     )    
     if title and any(keyword in title.lower() for keyword in ['predvd', 'predvdrip']):
-        f_caption += "\n⚠️<b><i>ഈ മൂവിയുടെ ഫയൽ എവിടെയെങ്കിലും ഫോർവേഡ് ചെയ്തു വെക്കുക എന്നിട്ട് ഡൗൺലോഡ് ചെയ്യുക\n\n3 മിനിറ്റിൽ ഇവിടുന്ന് ഡിലീറ്റ് ആവും🗑\n\n⚠️Forward the file of this Movie somewhere and download it\n\nWill be deleted from here in 3 minutes🗑</i></b>"
+        f_caption += "\n⚠️<b><i>ഈ മൂവിയുടെ ഫയൽ എവിടെയെങ്കിലും ഫോർവേഡ് ചെയ്തു വെക്കുക എന്നിട്ട് ഡൗൺലോഡ് ചെയ്യുക\n\n5 മിനിറ്റിൽ ഇവിടുന്ന് ഡിലീറ്റ് ആവും🗑\n\n⚠️Forward the file of this Movie somewhere and download it\n\nWill be deleted from here in 5 minutes🗑</i></b>"
         inline_keyboard = [
-                [InlineKeyboardButton("🔸ALL MOVIES CLICK HERE🔸", url="https://t.me/+8YhpTpHZUrQ3YTNl")]
+                [InlineKeyboardButton("🔸ALL MOVIES CLICK HERE🔸", url="https://t.me/+yKqnKrklurtkNTI1")]
             ]
         reply_markup = InlineKeyboardMarkup(inline_keyboard)
         await xd.edit_caption(caption=f_caption, reply_markup=reply_markup)
-        await asyncio.sleep(180)
+        await asyncio.sleep(300)
         await message.delete()
-        await xd.delete()
-    text_data = infile.find_one({"_id": "file_text"})
-    if not text_data:
-        return
-    text = text_data.get("text")
-    if text == "off":
-        return
-    else:
-        matrix = await xd.reply(f"{text}")
-        await asyncio.sleep(59)
-        await matrix.delete()
+        await xd.delete()   
 
 @Client.on_message(filters.command('channel') & filters.user(ADMINS))
 async def channel_info(bot, message):
