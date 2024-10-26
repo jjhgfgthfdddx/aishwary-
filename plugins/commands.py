@@ -96,16 +96,13 @@ async def send_file(client, query, ident, file_id):
         protect_content=True if ident == 'checksubp' else False,
         reply_markup=reply_markup
     )
-    text_data = infile.find_one({"_id": "file_text"})
-    if not text_data:
-        return
-    text = text_data.get("text")
-    if text == "off":
-        return
-    else:
-        matrix = await ok.reply(f"{text}")
-        await asyncio.sleep(59)
-        await matrix.delete()
+    replied = ok.id
+    da = await message.reply(DELETE_TXT, reply_to_message_id=replied)
+    await asyncio.sleep(300)
+    await message.delete()
+    await da.delete()
+    await asyncio.sleep(300)
+    await ok.delete()
    
 @Client.on_message(filters.command("start") & filters.incoming)
 async def start(client, message):
