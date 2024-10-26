@@ -38,6 +38,8 @@ Chek for Latest PreDVD ( ᴛʜᴇᴀᴛʀᴇ ᴘʀɪɴᴛ) Movies List /latest
 
 /purge_two - Delete Requests (2nd fsub) 
 
+/file_text - latest movie name edite
+
 /stats - Check Stats
 
 /ping - Bot Speed , Cpu etc
