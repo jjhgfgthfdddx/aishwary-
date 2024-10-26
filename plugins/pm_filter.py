@@ -32,6 +32,14 @@ logger.setLevel(logging.ERROR)
 BUTTONS = {}
 SPELL_CHECK = {}
 
+DELETE_TXT = """<b>⚠️ഈ മൂവിയുടെ ഫയൽ എവിടെയെങ്കിലും ഫോർവേഡ് ചെയ്തു വെക്കുക എന്നിട്ട് ഡൗൺലോഡ് ചെയ്യുക
+
+5 മിനിറ്റിൽ ഇവിടുന്ന് ഡിലീറ്റ് ആവും🗑
+
+⚠️Forward the file of this Movie somewhere and download it
+
+Will be deleted from here in 5 minutes🗑</b>"""
+
 @Client.on_message(filters.group & filters.text & filters.incoming)
 async def give_filter(client, message):
     g = await global_filters(client, message)
@@ -419,7 +427,24 @@ async def cb_handler(client: Client, query: CallbackQuery):
             file_id=file_id,
             caption=f_caption,
             protect_content=True if ident == "checksubp" else False,
-        )
+            reply_markup=InlineKeyboardMarkup(
+                          [
+                            [                            
+                            InlineKeyboardButton('🖥 𝗡𝗘𝗪 𝗢𝗧𝗧 𝗨𝗣𝗗𝗔𝗧𝗘𝗦 🖥', url=f'https://t.me/+XzVIX3lhqzAyYTQ1')
+                          ],[     
+                            InlineKeyboardButton("🖥 𝐎𝐓𝐓 𝐈𝐍𝐒𝐓𝐆𝐑𝐀𝐌 🖥", url='https://www.instagram.com/new_ott__updates?igsh=MTMxcmhwamF4eGp6eg==')
+                           ]
+                        ]
+                    )
+    ) 
+    replied = ok.id
+    da = await message.reply(DELETE_TXT, reply_to_message_id=replied)
+    await asyncio.sleep(300)
+    await message.delete()
+    await da.delete()
+    await asyncio.sleep(300)
+    await ok.delete()
+        
     elif query.data.startswith("killfilesdq"):
         ident, keyword = query.data.split("#")
         await query.message.edit_text(f"<b>Fᴇᴛᴄʜɪɴɢ Fɪʟᴇs ғᴏʀ ʏᴏᴜʀ ᴏ̨ᴜᴇʀʏ {keyword} ᴏɴ DB... Pʟᴇᴀsᴇ ᴡᴀɪᴛ...</b>")
