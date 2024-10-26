@@ -417,7 +417,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             InlineKeyboardButton('സിനിമ പ്രേമി', url='https://t.me/+8YhpTpHZUrQ3YTNl')
          ]]
         await query.answer()
-        xd = await client.send_cached_media(
+        ok = await client.send_cached_media(
             chat_id=query.from_user.id,
             file_id=file_id,
             caption=f_caption,
@@ -432,15 +432,13 @@ async def cb_handler(client: Client, query: CallbackQuery):
                         ]
                     )
         )
-        if title and any(keyword in title.lower() for keyword in ['predvd', 'predvdrip']):
-            f_caption += "\n⚠️<b><i>ഈ മൂവിയുടെ ഫയൽ എവിടെയെങ്കിലും ഫോർവേഡ് ചെയ്തു വെക്കുക എന്നിട്ട് ഡൗൺലോഡ് ചെയ്യുക\n\n5 മിനിറ്റിൽ ഇവിടുന്ന് ഡിലീറ്റ് ആവും🗑\n\n⚠️Forward the file of this Movie somewhere and download it\n\nWill be deleted from here in 5 minutes🗑</i></b>"
-            inline_keyboard = [
-                 [InlineKeyboardButton("🔸𝗠𝗢𝗩𝗜𝗘𝗦 𝗚𝗥𝗢𝗨𝗣🔸", url="https://t.me/+2FCs53JjHZo0MmZl")]
-                ]
-            reply_markup = InlineKeyboardMarkup(inline_keyboard)
-            await xd.edit_caption(caption=f_caption, reply_markup=reply_markup)
-            await asyncio.sleep(300)                   
-            await xd.delete()
+      replied = ok.id    
+      da = await message.reply(DELETE_TXT, reply_to_message_id=replied)
+      await asyncio.sleep(30)
+      await message.delete()
+      await da.delete()
+      await asyncio.sleep(230)
+      await ok.delete()
 
     elif query.data.startswith("killfilesdq"):
         ident, keyword = query.data.split("#")
