@@ -36,6 +36,14 @@ incol = indb['auto_del']
 infile = indb['file_reply_text']
 restarti = indb['restart']
 
+DELETE_TXT = """⚠️ഈ മൂവിയുടെ ഫയൽ എവിടെയെങ്കിലും ഫോർവേഡ് ചെയ്തു വെക്കുക എന്നിട്ട് ഡൗൺലോഡ് ചെയ്യുക
+
+5 മിനിറ്റിൽ ഇവിടുന്ന് ഡിലീറ്റ് ആവും🗑
+
+⚠️Forward the file of this Movie somewhere and download it
+
+Will be deleted from here in 5 minutes🗑"""
+
 async def admin_check(message: Message) -> bool:
     if not message.from_user: return False
     if message.chat.type not in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]: return False
@@ -366,7 +374,7 @@ async def start(client, message):
     if f_caption is None:
         f_caption = files.file_name
 
-    xd = await client.send_cached_media(
+    ok = await client.send_cached_media(
         chat_id=message.from_user.id,
         file_id=file_id,
         caption=f_caption,
@@ -380,17 +388,14 @@ async def start(client, message):
                            ]
                         ]
                     )
-    )    
-    if title and any(keyword in title.lower() for keyword in ['predvd', 'predvdrip']):
-        f_caption += "\n⚠️<b><i>ഈ മൂവിയുടെ ഫയൽ എവിടെയെങ്കിലും ഫോർവേഡ് ചെയ്തു വെക്കുക എന്നിട്ട് ഡൗൺലോഡ് ചെയ്യുക\n\n5 മിനിറ്റിൽ ഇവിടുന്ന് ഡിലീറ്റ് ആവും🗑\n\n⚠️Forward the file of this Movie somewhere and download it\n\nWill be deleted from here in 5 minutes🗑</i></b>"
-        inline_keyboard = [
-                [InlineKeyboardButton("🔸ALL MOVIES CLICK HERE🔸", url="https://t.me/+yKqnKrklurtkNTI1")]
-            ]
-        reply_markup = InlineKeyboardMarkup(inline_keyboard)
-        await xd.edit_caption(caption=f_caption, reply_markup=reply_markup)
-        await asyncio.sleep(300)
-        await message.delete()
-        await xd.delete()   
+    ) 
+    da = await message.reply(DELETE_TXT, reply_to_message_id=replied)
+    await asyncio.sleep(300)
+    await message.delete()
+    await da.delete()
+    await asyncio.sleep(300)
+    await ok.delete()
+    
 
 @Client.on_message(filters.command('channel') & filters.user(ADMINS))
 async def channel_info(bot, message):
