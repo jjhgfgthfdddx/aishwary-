@@ -763,7 +763,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                InlineKeyboardButton("back", callback_data="nlang")
            ]
        ]
-       await query.message.edit_text(text=f"Hey {query.from_user.mention} 👋<b><u> If you want to get the movie, follow the below…</u>👇\n\n<i>🔹Ask for correct spelling. (English Letters)\n\n🔸Ask for movies in English Lettes only.\n\n🔹Don't ask for unreleased movies.\n\n🔸 [Movie Name, Year, Language] Ask this way.\n\n🔹 Don't Use symbols while requesting movies. (+:;'!-`|...etc)\n\n🌏 Use the Google Button below for your movie details</b></i>", reply_markup=InlineKeyboardMarkup(btn))    
+       await query.message.edit_text(text=f"Hey {query.from_user.mention} 👋<b><u>If You Want To Get The Requested Movie Files Do Follow The Below Rules</u>👇\n\n<i>🔸PreDvD Files Only Avilable Here Dont Ask Any Other Movies (ᴛʜᴇᴀᴛʀᴇ ᴘʀɪɴᴛ)\n\n🔹Copy The Correct Spelling Form Google \n\n🔸Don't Use Symbols While Requesting (+:;'!-`|...etc)\n\n🔹Type The Movie Name In English Only Dont Use Any Other Languages\n\n🔸Use Correct Formate (eg : Aavesham 2024 , Aavesham Malayalam )\n\n🌏 Use the Google Button below for your movie details</b></i>", reply_markup=InlineKeyboardMarkup(btn))    
 
     elif query.data == "mal":
        xd = query.message.reply_to_message.text.replace(" ", "+")
