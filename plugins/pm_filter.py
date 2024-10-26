@@ -32,6 +32,13 @@ logger.setLevel(logging.ERROR)
 BUTTONS = {}
 SPELL_CHECK = {}
 
+DELETE_TXT = """⚠️ഈ മൂവിയുടെ ഫയൽ എവിടെയെങ്കിലും ഫോർവേഡ് ചെയ്തു വെക്കുക എന്നിട്ട് ഡൗൺലോഡ് ചെയ്യുക
+
+5 മിനിറ്റിൽ ഇവിടുന്ന് ഡിലീറ്റ് ആവും🗑
+
+⚠️Forward the file of this Movie somewhere and download it
+
+Will be deleted from here in 5 minutes🗑"""
 
 @Client.on_message(filters.group & filters.text & filters.incoming)
 async def give_filter(client, message):
