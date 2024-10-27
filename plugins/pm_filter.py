@@ -426,24 +426,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
             chat_id=query.from_user.id,
             file_id=file_id,
             caption=f_caption,
-            protect_content=True if ident == "checksubp" else False,
-            reply_markup=InlineKeyboardMarkup(
-                          [
-                            [                            
-                            InlineKeyboardButton('🖥 𝗡𝗘𝗪 𝗢𝗧𝗧 𝗨𝗣𝗗𝗔𝗧𝗘𝗦 🖥', url=f'https://t.me/+XzVIX3lhqzAyYTQ1')
-                          ],[     
-                            InlineKeyboardButton("🖥 𝐎𝐓𝐓 𝐈𝐍𝐒𝐓𝐆𝐑𝐀𝐌 🖥", url='https://www.instagram.com/new_ott__updates?igsh=MTMxcmhwamF4eGp6eg==')
-                           ]
-                        ]
-                    )
-    ) 
-    replied = ok.id
-    da = await message.reply(DELETE_TXT, reply_to_message_id=replied)
-    await asyncio.sleep(300)
-    await message.delete()
-    await da.delete()
-    await asyncio.sleep(300)
-    await ok.delete()
+            protect_content=True if ident == "checksubp" else False
+           )
         
     elif query.data.startswith("killfilesdq"):
         ident, keyword = query.data.split("#")
