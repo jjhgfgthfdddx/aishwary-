@@ -66,7 +66,7 @@ def convert_time_to_seconds(time_str):
     else:
         return 0
         
-async def send_file(client, query, ident, message, file_id):
+async def send_file(client, query, ident, file_id):
     files_ = await get_file_details(file_id)
     if not files_:
         return
