@@ -66,7 +66,7 @@ def convert_time_to_seconds(time_str):
     else:
         return 0
         
-async def send_file(client, query, ident, file_id):
+async def send_file(client, query, ident, message, file_id):
     files_ = await get_file_details(file_id)
     if not files_:
         return
@@ -75,7 +75,7 @@ async def send_file(client, query, ident, file_id):
     size = get_size(files.file_size)
     f_caption = files.file_name
     if CUSTOM_FILE_CAPTION:
-        try:
+       try:
             f_caption=CUSTOM_FILE_CAPTION.format(file_name= '' if title is None else title, file_size='' if size is None else size, file_caption='' if f_caption is None else f_caption, mention=message.from_user.mention)                
         except Exception as e:
             logger.exception(e)
